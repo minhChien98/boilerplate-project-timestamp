@@ -26,11 +26,11 @@ app.get("/api/hello", function (req, res) {
 
 // your first API endpoint... 
 app.get("/api/timestamp/:date", function (req, res) {
-  const { date } = req.params;
-  if (new Date(date)) {
+  const { date  } = req.params;
+  if (new Date(Number(date) || date ) != 'Invalid Date') {
     res.json({
-      unix: new Date(date).getTime(),
-      utc: new Date(date).toUTCString(),
+      unix: new Date(Number(date) || date ).getTime(),
+      utc: new Date(Number(date) || date ).toUTCString(),
     });
   } else {
     res.json({ error : "Invalid Date" });
