@@ -24,15 +24,16 @@ app.get("/api/hello", function (req, res) {
   res.json({greeting: 'hello API'});
 });
 
-// your first API endpoint... 
-app.get("/api/timestamp/:date", function (req, res) {
-  const { date  } = req.params;
-  if (date == '') {
+app.get("/api/timestamp", function (req, res) {
     res.json({
       unix: new Date().getTime(),
       utc: new Date().toUTCString(),
     });
-  }
+});
+
+// your first API endpoint... 
+app.get("/api/timestamp/:date", function (req, res) {
+  const { date  } = req.params;
   if (new Date(Number(date) || date ) != 'Invalid Date') {
     res.json({
       unix: new Date(Number(date) || date ).getTime(),
